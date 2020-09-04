@@ -188,14 +188,4 @@ while game.winner is None:
   dealer.reset()
 
   counter += 1
-
-
-# TODO
-## finish betting stuff - remove bets from credits, add bets to round pot, award pot to winner
-## learn and implement poker hand odds
-## analyze dealer's hand and make him bet accordingly
-## provide game summary when someone wins - biggest pot, hands played, best hand
-## refactor into django - make endpoints, push data to FE
-## build FE app
-
   

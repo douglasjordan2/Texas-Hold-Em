@@ -1,0 +1,13 @@
+fix bug in two pair split pot where kicker and over pair are same, default winner to highest under pair
+
+finish betting stuff - remove bets from credits, add bets to round pot, award pot to winner
+
+learn and implement poker hand odds
+
+analyze dealer's hand and make him bet accordingly
+
+provide game summary when someone wins - biggest pot, hands played, best hand
+
+refactor into django - make endpoints, push data to FE
+
+build FE app
