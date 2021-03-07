@@ -1,6 +1,8 @@
 import time
 import os
 
+#small change to check gh configuration
+
 clear = lambda : os.system('tput reset')
 
 from game import Game
