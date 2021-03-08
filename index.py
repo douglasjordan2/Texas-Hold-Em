@@ -3,7 +3,7 @@ import os
 
 #small change to check gh configuration
 
-clear = lambda : os.system('tput reset')
+clear = lambda : os.system("tput reset")
 
 from game import Game
 from round import Round
@@ -13,16 +13,16 @@ from players import Player
 
 clear()
 print("")
-name = input('Enter your name: ')
+name = input("Enter your name: ")
 # name = "You"
 
 player = Player(name, 1000)
-dealer = Player('Dealer', 1000)
+dealer = Player("Dealer", 1000)
 
 time.sleep(0.5)
 clear()
 print("")
-print(f"Welcome to Texas Hold Em, {player}!")
+print("Welcome to Texas Hold Em, " + player.name + "!")
 print("")
 
 # initiate game
@@ -39,7 +39,7 @@ while game.winner is None:
   board = Board()
 
   # initiate new round
-  round_id = f'Round {counter + 1}'
+  round_id = "Round " + str(counter + 1)
   round = Round(round_id)
   
   # populate dealer's hole cards
@@ -55,19 +55,87 @@ while game.winner is None:
   # show board and game info
   time.sleep(1)
   clear()
-  print(f'Your Credits: {player.credits} | Dealer Credits: {dealer.credits}')
+  print("Your Credits: " + str(player.credits) + " | Dealer Credits: " + str(dealer.credits))
   print("")
   print("")
-  print(f"\tDealer: [] []")
+  print("\tDealer: [] []")
   print("")
   print("\tX [] [] [] [] [] ")
   print("")
-  print(f'\t{player}: {player.hand[0]} {player.hand[1]}')
+  print("\t" + player.name + ": " + str(player.hand[0]) + " " + str(player.hand[1]))
   print("")
   print("")
 
   # first bets
   player_bet = input('Make your bet: ')
+  time.sleep(0.3)
+  clear()
+  print("Your Credits: " + str(player.credits) + " | Dealer Credits: " + str(dealer.credits))
+  print("")
+  print("")
+  print("\tDealer: [] []")
+  print("")
+  print("\tX [] [] [] [] [] ")
+  print("")
+  print("\t" + player.name + ": " + str(player.hand[0]) + " " + str(player.hand[1]))
+  print("")
+  print("")
+  print('.')
+  time.sleep(0.3)
+  clear()
+  print("Your Credits: " + str(player.credits) + " | Dealer Credits: " + str(dealer.credits))
+  print("")
+  print("")
+  print("\tDealer: [] []")
+  print("")
+  print("\tX [] [] [] [] [] ")
+  print("")
+  print("\t" + player.name + ": " + str(player.hand[0]) + " " + str(player.hand[1]))
+  print("")
+  print("")
+  print('..')
+  time.sleep(0.3)
+  clear()
+  print("Your Credits: " + str(player.credits) + " | Dealer Credits: " + str(dealer.credits))
+  print("")
+  print("")
+  print("\tDealer: [] []")
+  print("")
+  print("\tX [] [] [] [] [] ")
+  print("")
+  print("\t" + player.name + ": " + str(player.hand[0]) + " " + str(player.hand[1]))
+  print("")
+  print("")
+  print('...')
+  player.credits -= float(player_bet)
+
+  ### write hand analysis for dealer so he can bet automatically without calling immediately
+  dealer_bet = player_bet
+  ###
+  dealer.credits -= float(dealer_bet)
+
+  # burn one
+  card = deck.draw()
+  dealer.add_card(card)
+
+  # populate player"s hole cards
+  for i in range(2):
+    card = deck.draw()
+    player.add_card(card)
+
+  # show board and game info
+  time.sleep(0.5)
+  clear()
+  print("Your Credits: " + str(player.credits) + " | Dealer Credits: " + str(dealer.credits))
+  print("")
+  print("")
+  print("\tDealer: [] []")
+  print("")
+  print("\tX [] [] [] [] [] ")
+  print("")
+  print("\t" + str(player) + ": " + str(player.hand[0]) + " " + str(player.hand[1]))
+  print("")
+  print("")
 
   # burn one
   card = deck.draw()
@@ -81,20 +149,20 @@ while game.winner is None:
   # update board
   time.sleep(1)
   clear()
-  print(f'Your Credits: {player.credits} | Dealer Credits: {dealer.credits}')
+  print("Your Credits: " + str(player.credits) + " | Dealer Credits: " + str(dealer.credits))
   print("")
   print("")
-  print(f"\tDealer: [] []")
+  print("\tDealer: [] []")
   print("")
-  print(f"Flop:   X {board.board[0]} {board.board[1]} {board.board[2]} [] [] ")
+  print("Flop:   X " + str(board.board[0]) + " " + str(board.board[1]) + " " + str(board.board[2]) + " [] [] ")
   print("")
-  print(f'\t{player}: {player.hand[0]} {player.hand[1]}')
+  print("\t" + player.name + ": " + str(player.hand[0]) + " " + str(player.hand[1]))
   print("")
   print("")
 
-  # analyze player's hand and bet
-  print(f'{player.analyze(board.board)}')
-  player_bet = input('Make your bet: ')
+  # analyze player"s hand and bet
+  print(player.analyze(board.board))
+  player_bet = input("Make your bet: ")
 
   # turn
   card = deck.draw()
@@ -105,20 +173,20 @@ while game.winner is None:
   # update board
   time.sleep(1)
   clear()
-  print(f'Your Credits: {player.credits} | Dealer Credits: {dealer.credits}')
+  print("Your Credits: " + str(player.credits) + " | " + "Dealer Credits: " + str(dealer.credits))
   print("")
   print("")
-  print(f"\tDealer: [] []")
+  print("\tDealer: [] []")
   print("")
-  print(f"Turn:   X {board.board[0]} {board.board[1]} {board.board[2]} {board.board[3]} [] ")
+  print("Turn:   X " + str(board.board[0]) + " " + str(board.board[1]) + " " + str(board.board[2]) + " " + str(board.board[3]) + " [] ")
   print("")
-  print(f'\t{player}: {player.hand[0]} {player.hand[1]}')
+  print("\t" + player.name + ": " + str(player.hand[0]) + " " + str(player.hand[1]))
   print("")
   print("")
 
-  # analyze player's hand and bet
-  print(f'{player.analyze(board.board)}')
-  player_bet = input('Make your bet: ')
+  # analyze player"s hand and bet
+  print(player.analyze(board.board))
+  player_bet = input("Make your bet: ")
 
   # river
   card = deck.draw()
@@ -129,26 +197,26 @@ while game.winner is None:
   # update board
   time.sleep(1)
   clear()
-  print(f'Your Credits: {player.credits} | Dealer Credits: {dealer.credits}')
+  print("Your Credits: " + str(player.credits) + " | Dealer Credits: " + str(dealer.credits))
   print("")
   print("")
-  print(f"\tDealer: [] []")
+  print("\tDealer: [] []")
   print("")
-  print(f"River:  X {board.board[0]} {board.board[1]} {board.board[2]} {board.board[3]} {board.board[4]} ")
+  print("River:  X " + str(board.board[0]) + " " + str(board.board[1]) + " " + str(board.board[2]) + " " + str(board.board[3]) + " " + str(board.board[4]))
   print("")
-  print(f'\t{player}: {player.hand[0]} {player.hand[1]}')
+  print("\t" + player.name + ": " + str(player.hand[0]) + " " + str(player.hand[1]))
   print("")
   print("")
   
-  # analyze player's hand and bet
-  print(f'Your hand analysis: {player.analyze(board.board)}')
-  player_bet = input('Make your bet: ')
+  # analyze player"s hand and bet
+  print("Your hand analysis: " + player.analyze(board.board))
+  player_bet = input("Make your bet: ")
 
   player.analyze(board.board)
   dealer.analyze(board.board)
 
   clear()
-  print(f"Player: {player.best_hand} | Dealer: {dealer.best_hand}")
+  print("Player: " + str(player.best_hand) + " | Dealer: " + str(dealer.best_hand))
   if player.best_hand > dealer.best_hand:
     round.winner = player
   elif dealer.best_hand > player.best_hand:
@@ -170,21 +238,21 @@ while game.winner is None:
       elif d > p:
         round.winner = dealer
       else:
-        round.winner = 'Split Pot'
+        round.winner = "Split Pot"
 
   print("")
-  print("Player:", [f'{card.rank}{card.suit}' for card in player.hand + board.board])
+  print("Player:", [card.rank + card.suit for card in player.hand + board.board])
   print("")
-  print("Dealer:", [f'{card.rank}{card.suit}' for card in dealer.hand + board.board])
+  print("Dealer:", [card.rank + card.suit for card in dealer.hand + board.board])
   print("")
 
   game.add_round(round)
 
   for round in game.rounds:
-    print(f'{round.id} Winner: {round.winner}')
+    print(str(round.id) + " Winner: " + round.winner)
 
   print("")
-  input('Press Enter to Continue.')
+  input("Press Enter to Continue.")
 
   player.reset()
   dealer.reset()

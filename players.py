@@ -94,7 +94,7 @@ class Player:
       if v >= 5:
         flush = True
 
-    return_hand = [f'{card.rank}{card.suit}'  for card in hand]
+    return_hand = [card.rank + card.suit for card in hand]
 
     if straight:
       if flush:
@@ -149,16 +149,16 @@ class Player:
         self.kicker = k
         self.tie_breaker = most[1][0]
         grammar = 'an' if k.rank is 'A' else 'a'
-        return f'You have quad {most[0]}s with {grammar} {k.rank} kicker.'
+        return "You have quad " + most[0] + "s with " + grammar + k.rank + " kicker."
       else:
-        return f'You have quad {most[0]}s.'
+        return "You have quad " + most[0] + "s."
 
     if len(most[1]) is 3:
       if len(least[1]) is 2:
         self.best_hand = 7
         self.tie_breaker = most[1][0]
 
-        return f'You have a full house, {most[0]}s over {least[0]}s.'
+        return "You have a full house, " + most[0] + "s over " + least[0] + "s."
       else:
         self.best_hand = 4
 
@@ -169,7 +169,7 @@ class Player:
           if card.sort > k.sort and card.rank is not most[0]:
             k = card
         grammar = 'an' if k.rank is 'A' else 'a'
-        return f'You have trip {most[0]}s with {grammar} {k.rank} kicker.'
+        return "You have trip " + most[0] + "s with " + grammar + k.rank + " kicker."
         
 
     if len(most[1]) is 2:
@@ -184,7 +184,7 @@ class Player:
         self.kicker = k
         self.tie_breaker = most[1][0]
         grammar = 'an' if k.rank is 'A' else 'a'
-        return f'You have two pair, {most[0]}s and {least[0]}s with {grammar} {k.rank} kicker.'
+        return "You have two pair, " + most[0] + "s and " + least[0] + "s with " + grammar + k.rank + " kicker."
       else:
         self.best_hand = 2
 
@@ -192,15 +192,15 @@ class Player:
         for card in hand:
           if card.sort > k.sort and card.rank is not most[0]:
             k = card
-        
+
         self.kicker = k
         self.tie_breaker = most[1][0]
         grammar = 'an' if k.rank is 'A' else 'a'
-        return f'You have a pair of {most[0]}s with {grammar} {k.rank} kicker.'
+        return "You have a pair of " + most[0] + "s with " + grammar + k.rank + " kicker."
 
     if len(most[1]) is 1:
       self.best_hand = 1
       self.tie_breaker = most[1][0]
       self.kicker = most[1][0]
       
-      return f'High card, {most[0]}'
+      return "High card, " + most[0]

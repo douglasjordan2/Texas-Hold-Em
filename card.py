@@ -6,4 +6,4 @@ class Card:
     self.next = next
   
   def __str__(self):
-    return f'{self.rank}{self.suit}'
+    return self.rank + self.suit
